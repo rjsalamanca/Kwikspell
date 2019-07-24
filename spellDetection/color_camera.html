@@ -1,0 +1,495 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>tracking.js - color with camera</title>
+  <!-- <link rel="stylesheet" href="assets/demo.css"> -->
+
+  <script src="./build/tracking-min.js"></script>
+  <!-- <script src="../node_modules/dat.gui/build/dat.gui.min.js"></script> -->
+  <script src="https://unpkg.com/konva@3.4.1/konva.min.js"></script>
+
+  <style>
+    video,
+    canvas {
+      /* margin-left: 100px;
+      margin-top: 35px; */
+      position: absolute;
+    }
+
+    #video {
+      /* opacity: 0; */
+    }
+
+    #video,
+    #canvas {
+      /* transform: rotateY(180deg);
+      -webkit-transform: rotateY(180deg);
+      /* Safari and Chrome */
+      /* -moz-transform: rotateY(180deg);  */
+      /* Firefox */
+    }
+  </style>
+</head>
+
+<body>
+  <!-- <div class="demo-frame">
+    <div class="demo-container">
+      <video id="video" width="600" height="450" preload autoplay loop muted controls></video>
+      <canvas id="canvas" width="600" height="450"></canvas>
+    </div>
+  </div> -->
+  <div id="container"></div>
+  <script>
+    // document.getElementById('toggle').addEventListener('click', function () {
+    //   layer.toggleHitCanvas();
+    // });
+    //window.onload = function () {
+    //<video id="video" width="600" height="450" preload autoplay loop muted controls></video>
+    //<canvas id="canvas" width="600" height="450"></canvas>
+    window.onload = function () {
+
+      function writeMessage(message) {
+        text.text(message);
+        layer.draw();
+      }
+      var stage = new Konva.Stage({
+        container: 'container',
+        width: 500,
+        height: 400
+        // width: window.innerWidth,
+        // height: window.innerHeight
+      });
+
+      var layer = new Konva.Layer();
+
+      var text = new Konva.Text({
+        x: 10,
+        y: 30,
+        fontSize: 24,
+        fill: 'black'
+      });
+      layer.add(text);
+      stage.add(layer);
+      var line = new Konva.Line({
+        x: 40,
+        y: 90,
+        points: [5, 70, 50, 200, 200, -30, 220, 300],
+        stroke: 'black',
+        strokeWidth: 20,
+        hitStrokeWidth: 50,
+        lineCap: 'round',
+        lineJoin: 'round',
+        tension: 1,
+        shadowBlur: 10
+
+      });
+      layer.add(line);
+      // add the layer to the stage
+      stage.add(layer);
+
+      function drawSpell(rect) {
+        line.scale({
+          x: 1,
+          y: 1
+        })
+        layer.add(line);
+        // add the layer to the stage
+        stage.add(layer);
+
+        /*
+         * create a triangle shape by defining a
+         * drawing function which draws a triangle
+         */
+
+
+        line.on('mouseover', function () {
+          writeMessage('Mouseover line');
+        });
+        line.on('mouseout', function () {
+          writeMessage('Mouseout line');
+        });
+        line.on('mousedown', function () {
+          writeMessage('Mousedown line');
+        });
+        line.on('mouseup', function () {
+          writeMessage('Mouseup line');
+        });
+
+
+        // const xoff = video.x;
+        // const yoff = video.y;
+        // context.fillStyle = "#0095DD";
+        // context.strokeStyle = "red";
+        // //context.lineWidth = 15;
+        // spellPath.moveTo(55, 165);
+        // spellPath.bezierCurveTo(50, 151, 54, 196, 73, 218);
+        // spellPath.bezierCurveTo(83, 229, 83, 241, 113, 237);
+        // spellPath.bezierCurveTo(128, 235, 147, 242, 161, 223);
+        // spellPath.bezierCurveTo(170, 211, 174, 75, 189, 76);
+        // spellPath.bezierCurveTo(221, 79, 234, 301, 227, 314);
+        // spellPath.bezierCurveTo(221, 325, 231, 323, 218, 321);
+        // spellPath.bezierCurveTo(203, 319, 197, 143, 194, 128);
+        // spellPath.bezierCurveTo(191, 113, 189, 234, 173, 249);
+        // spellPath.bezierCurveTo(162, 259, 136, 259, 116, 258);
+        // spellPath.bezierCurveTo(101, 257, 87, 264, 66, 240);
+        // spellPath.bezierCurveTo(56, 229, 50, 206, 45, 182);
+        // spellPath.closePath();
+
+        // context.stroke(spellPath);
+        // context.lineWidth = 3;
+
+        // spellPath.moveTo(107, 139);
+
+        // spellPath.bezierCurveTo(103, 169, 99, 202, 105, 238);
+        // spellPath.bezierCurveTo(110, 268, 171, 282, 184, 242);
+        // spellPath.bezierCurveTo(197, 203, 212, -10, 240, 47);
+        // spellPath.bezierCurveTo(285, 138, 304, 334, 302, 319);
+        // context.stroke(spellPath);
+
+
+        //        context.lineWidth = 20;
+        // spellPath.bezierCurveTo(300, 50, 200, 400, 490, 100);
+        // spellPath.lineTo(490, 300);
+        // spellPath.lineTo(50, 300);
+        // spellPath.closePath();
+
+        // spellPath.lineWidth = 15;
+        // spellPath.strokeStyle = "#FFCC00";
+        // spellPath.fillStyle = "#FFDE58";
+
+        //spellPath.arc(150, 75, 50, 0, 2 * Math.PI);
+        //context.fillStyle = 'red';
+        //context.fill(spellPath);
+
+        //context.stroke(spellPath);
+        //for (let i = 0; i < wand.width; i++) {
+        //for (let j = 0; j < wand.height; j++) {
+        //if (context.isPointInPath(spellPath, wand.x, wand.y)) {
+        //console.log('yes')
+        //  wand.color = 'blue';
+        //} else {
+        //  wand.color = 'red';
+        //}
+        //}
+        //}
+
+        // if (context.isPointInPath(spellPath, wand.x, wand.y)) {
+        //   //console.log('yes')
+        //   wand.color = 'blue'
+        // } else {
+        //   wand.color = 'red';
+        // }
+
+        // canvas.addEventListener('mousemove', function (event) {
+        //   // Check whether point is inside circle
+        //   if (context.isPointInPath(spellPath, event.clientX, event.clientY)) {
+        //     context.fillStyle = 'green';
+        //   } else {
+        //     context.fillStyle = 'red';
+
+        //   }
+        //   context.fill(spellPath);
+        // });
+
+        //context.fillRect(spell.path.x, spell.path.y, spell.path.width, spell.path.height);
+      }
+
+      /////////////////
+
+      var container = document.getElementById('container');
+      console.log(container)
+      var videoCreate = document.createElement('video');
+      videoCreate.setAttribute('id', 'video')
+      videoCreate.setAttribute('width', container.style.width)
+      videoCreate.setAttribute('height', container.style.height)
+      videoCreate.setAttribute('preload', '')
+      videoCreate.setAttribute('autoplay', '')
+      videoCreate.setAttribute('loop', '')
+      videoCreate.setAttribute('muted', '')
+      videoCreate.setAttribute('controls', '')
+
+      container.childNodes[0].append(videoCreate);
+      container.childNodes[0].childNodes[0].setAttribute('id', 'canvas');
+      var video = document.getElementById('video');
+      var canvas = document.getElementById('canvas');
+      var context = canvas.getContext('2d');
+
+      //spell status
+      let spell = {
+        path: {
+          x: 20,
+          y: 20,
+          height: 100,
+          width: 100
+        },
+        status: 1
+      }
+      let spellPath = new Path2D();
+
+      let wand = {
+        x: 0,
+        y: 0,
+        width: 0,
+        height: 0,
+        color: 'red'
+      }
+
+      tracking.ColorTracker.registerColor('red', function (r, g, b) {
+        var dx = r - 255;
+        var dy = g - 50;
+        var dz = b - 50;
+
+        if ((b - g) <= 100 && (r - g) >= 60) {
+          // console.log('b-g: ', (b - g))
+          //console.log('r-g: ', (r - g))
+          return true;
+        }
+        return dx * dx + dy * dy + dz * dz < 3500;
+      });
+
+      var tracker = new tracking.ColorTracker(['red']);
+
+      tracking.track('#video', tracker, {
+        camera: true
+      });
+
+      //Listener
+      tracker.on('track', function (event) {
+        context.clearRect(0, 0, canvas.width, canvas.height);
+        //drawSpell()
+        drawSpell()
+        var path = new Konva.Path({
+          x: 240,
+          y: 40,
+          data: 'M12.582,9.551C3.251,16.237,0.921,29.021,7.08,38.564l-2.36,1.689l4.893,2.262l4.893,2.262l-0.568-5.36l-0.567-5.359l-2.365,1.694c-4.657-7.375-2.83-17.185,4.352-22.33c7.451-5.338,17.817-3.625,23.156,3.824c5.337,7.449,3.625,17.813-3.821,23.152l2.857,3.988c9.617-6.893,11.827-20.277,4.935-29.896C35.591,4.87,22.204,2.658,12.582,9.551z',
+          fill: 'green',
+          scaleX: 2,
+          scaleY: 2
+        });
+        if (context.isPointInPath(spellPath, wand.x, wand.y)) {
+          console.log('yes')
+          wand.color = 'blue';
+        } else {
+          wand.color = 'red';
+        }
+
+        event.data.forEach(function (rect) {
+
+          if (rect.color === 'custom') {
+            rect.color = tracker.customColor;
+          }
+
+          wand.x = rect.x;
+          wand.y = rect.y;
+          wand.width = rect.width;
+          wand.height = rect.height;
+
+          context.strokeStyle = wand.color;
+          context.strokeRect(rect.x, rect.y, rect.width, rect.height)
+          context.font = '11px Helvetica';
+          context.fillStyle = wand.color;
+        });
+      });
+
+
+
+      function collisionDetection(rect) {
+        // //console.log(spellPath)
+        // if (typeof rect === 'object') {
+        //   if (context.isPointInStroke(spellPath, rect.x, rect.y)) {
+        //     //console.log('yes')
+        //     rect.color = 'blue'
+        //   } else {
+        //     context.fillStyle = wand.color;
+        //   }
+        // }
+      }
+
+      function game() {
+        drawSpell();
+        collisionDetection();
+      }
+
+      var interval = setInterval(game, 10);
+
+      //initGUIControllers(tracker);
+    };
+  </script>
+
+  <!-- 
+  <script>
+    window.onload = function () {
+      var video = document.getElementById('video');
+      var canvas = document.getElementById('canvas');
+      var context = canvas.getContext('2d');
+
+      //spell status
+      let spell = {
+        path: {
+          x: 20,
+          y: 20,
+          height: 100,
+          width: 100
+        },
+        status: 1
+      }
+      let spellPath = new Path2D();
+
+      let wand = {
+        x: 0,
+        y: 0,
+        width: 0,
+        height: 0,
+        color: 'red'
+      }
+
+      tracking.ColorTracker.registerColor('red', function (r, g, b) {
+        var dx = r - 255;
+        var dy = g - 50;
+        var dz = b - 50;
+
+        if ((b - g) <= 100 && (r - g) >= 60) {
+          // console.log('b-g: ', (b - g))
+          //console.log('r-g: ', (r - g))
+          return true;
+        }
+        return dx * dx + dy * dy + dz * dz < 3500;
+      });
+
+      var tracker = new tracking.ColorTracker(['red']);
+
+      tracking.track('#video', tracker, {
+        camera: true
+      });
+
+      //Listener
+      tracker.on('track', function (event) {
+        context.clearRect(0, 0, canvas.width, canvas.height);
+        //drawSpell()
+        drawSpell()
+
+        event.data.forEach(function (rect) {
+
+          if (rect.color === 'custom') {
+            rect.color = tracker.customColor;
+          }
+
+          wand.x = rect.x;
+          wand.y = rect.y;
+          wand.width = rect.width;
+          wand.height = rect.height;
+
+          context.strokeStyle = wand.color;
+          context.strokeRect(rect.x, rect.y, rect.width, rect.height)
+          context.font = '11px Helvetica';
+          context.fillStyle = wand.color;
+        });
+      });
+
+      function drawSpell(rect) {
+        const xoff = video.x;
+        const yoff = video.y;
+        context.fillStyle = "#0095DD";
+        context.strokeStyle = "red";
+        //context.lineWidth = 15;
+        spellPath.moveTo(55, 165);
+        spellPath.bezierCurveTo(50, 151, 54, 196, 73, 218);
+        spellPath.bezierCurveTo(83, 229, 83, 241, 113, 237);
+        spellPath.bezierCurveTo(128, 235, 147, 242, 161, 223);
+        spellPath.bezierCurveTo(170, 211, 174, 75, 189, 76);
+        spellPath.bezierCurveTo(221, 79, 234, 301, 227, 314);
+        spellPath.bezierCurveTo(221, 325, 231, 323, 218, 321);
+        spellPath.bezierCurveTo(203, 319, 197, 143, 194, 128);
+        spellPath.bezierCurveTo(191, 113, 189, 234, 173, 249);
+        spellPath.bezierCurveTo(162, 259, 136, 259, 116, 258);
+        spellPath.bezierCurveTo(101, 257, 87, 264, 66, 240);
+        spellPath.bezierCurveTo(56, 229, 50, 206, 45, 182);
+        spellPath.closePath();
+
+        context.stroke(spellPath);
+        context.lineWidth = 3;
+
+        // spellPath.moveTo(107, 139);
+
+        // spellPath.bezierCurveTo(103, 169, 99, 202, 105, 238);
+        // spellPath.bezierCurveTo(110, 268, 171, 282, 184, 242);
+        // spellPath.bezierCurveTo(197, 203, 212, -10, 240, 47);
+        // spellPath.bezierCurveTo(285, 138, 304, 334, 302, 319);
+        // context.stroke(spellPath);
+
+
+        //        context.lineWidth = 20;
+        // spellPath.bezierCurveTo(300, 50, 200, 400, 490, 100);
+        // spellPath.lineTo(490, 300);
+        // spellPath.lineTo(50, 300);
+        // spellPath.closePath();
+
+        // spellPath.lineWidth = 15;
+        // spellPath.strokeStyle = "#FFCC00";
+        // spellPath.fillStyle = "#FFDE58";
+
+        //spellPath.arc(150, 75, 50, 0, 2 * Math.PI);
+        //context.fillStyle = 'red';
+        //context.fill(spellPath);
+
+        //context.stroke(spellPath);
+        //for (let i = 0; i < wand.width; i++) {
+        //for (let j = 0; j < wand.height; j++) {
+        if (context.isPointInPath(spellPath, wand.x, wand.y)) {
+          //console.log('yes')
+          wand.color = 'blue';
+        } else {
+          wand.color = 'red';
+        }
+        //}
+        //}
+
+        // if (context.isPointInPath(spellPath, wand.x, wand.y)) {
+        //   //console.log('yes')
+        //   wand.color = 'blue'
+        // } else {
+        //   wand.color = 'red';
+        // }
+
+        // canvas.addEventListener('mousemove', function (event) {
+        //   // Check whether point is inside circle
+        //   if (context.isPointInPath(spellPath, event.clientX, event.clientY)) {
+        //     context.fillStyle = 'green';
+        //   } else {
+        //     context.fillStyle = 'red';
+
+        //   }
+        //   context.fill(spellPath);
+        // });
+
+        //context.fillRect(spell.path.x, spell.path.y, spell.path.width, spell.path.height);
+      }
+
+      function collisionDetection(rect) {
+        // //console.log(spellPath)
+        // if (typeof rect === 'object') {
+        //   if (context.isPointInStroke(spellPath, rect.x, rect.y)) {
+        //     //console.log('yes')
+        //     rect.color = 'blue'
+        //   } else {
+        //     context.fillStyle = wand.color;
+        //   }
+        // }
+      }
+
+      function game() {
+        drawSpell();
+        collisionDetection();
+      }
+
+      var interval = setInterval(game, 10);
+
+      //initGUIControllers(tracker);
+    };
+  </script> -->
+
+</body>
+
+</html>
